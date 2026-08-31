@@ -1,0 +1,819 @@
+<title>초원식당 가격표</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans+Thai:wght@400;500;700&family=Noto+Sans+Khmer:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f5eee1;
+    --card: #fffaf0;
+    --card2: #fdf6e9;
+    --ink: #2e2118;
+    --ink-soft: #7a6a58;
+    --ink-faint: #a4937e;
+    --line: #e6d9c3;
+    --line-soft: #efe5d2;
+    --accent: #c2401d;
+    --accent-ink: #a33517;
+    --accent-soft: #f8e5db;
+    --stamp: #c2401d;
+    --chip: #f0e6d2;
+    --shadow: 0 1px 2px rgba(72,52,30,.06), 0 6px 18px rgba(72,52,30,.07);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #201810; --card: #2b221a; --card2: #332920;
+      --ink: #f2e8d8; --ink-soft: #bfae99; --ink-faint: #8d7c67;
+      --line: #443628; --line-soft: #3a2e22;
+      --accent: #ea6a3e; --accent-ink: #f08054; --accent-soft: #45281c;
+      --stamp: #ea6a3e; --chip: #3c3125;
+      --shadow: 0 1px 2px rgba(0,0,0,.25), 0 6px 18px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #201810; --card: #2b221a; --card2: #332920;
+    --ink: #f2e8d8; --ink-soft: #bfae99; --ink-faint: #8d7c67;
+    --line: #443628; --line-soft: #3a2e22;
+    --accent: #ea6a3e; --accent-ink: #f08054; --accent-soft: #45281c;
+    --stamp: #ea6a3e; --chip: #3c3125;
+    --shadow: 0 1px 2px rgba(0,0,0,.25), 0 6px 18px rgba(0,0,0,.25);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Noto Sans KR", "Noto Sans Thai", "Noto Sans Khmer", "Apple SD Gothic Neo", "Malgun Gothic", "Leelawadee UI", sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .serif { font-family: "Noto Serif KR", "Apple SD Gothic Neo", serif; }
+
+  .wrap { max-width: 480px; margin: 0 auto; padding: 0 16px 56px; }
+
+  .demo-ribbon {
+    background: var(--ink); color: var(--bg); text-align: center;
+    font-size: .72rem; letter-spacing: .02em; padding: 6px 10px;
+  }
+
+  .langbar {
+    position: sticky; top: 0; z-index: 20; background: var(--bg);
+    padding: 10px 0 8px; border-bottom: 1px solid var(--line-soft); margin-bottom: 4px;
+  }
+  .langbar-in { max-width: 480px; margin: 0 auto; padding: 0 16px; display: flex; gap: 5px; }
+  .langbtn {
+    flex: 1; border: 1px solid var(--line); background: var(--card); color: var(--ink-soft);
+    border-radius: 999px; padding: 7px 0; font-size: .74rem; font-weight: 500;
+    font-family: inherit; cursor: pointer; white-space: nowrap;
+  }
+  .langbtn[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); font-weight: 700; }
+
+  .masthead { text-align: center; padding: 26px 0 6px; }
+  .masthead .mk-sub {
+    font-size: .72rem; letter-spacing: .28em; color: var(--accent);
+    text-transform: uppercase; font-weight: 700; margin-bottom: 6px;
+  }
+  .masthead h1 { font-size: 1.6rem; margin: 0; font-weight: 900; letter-spacing: .02em; }
+  .masthead .mk-en { font-size: .8rem; color: var(--ink-soft); margin-top: 4px; }
+  .mast-rule { display: flex; align-items: center; gap: 10px; margin: 16px 0 20px; color: var(--ink-faint); font-size: .8rem; }
+  .mast-rule::before, .mast-rule::after { content: ""; flex: 1; border-top: 1px dashed var(--line); }
+
+  .lead { font-size: .86rem; color: var(--ink-soft); text-align: center; margin: 0 8px 20px; }
+
+  .shopcard {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 13px 16px; margin-bottom: 10px;
+    text-decoration: none; color: inherit; box-shadow: var(--shadow);
+  }
+  .stamp {
+    flex: none; width: 44px; height: 44px; border-radius: 50%;
+    border: 2px solid var(--stamp); color: var(--stamp);
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Noto Serif KR", serif; font-weight: 900; font-size: 1rem;
+    transform: rotate(-6deg);
+  }
+  .shopcard .sc-body { flex: 1; min-width: 0; }
+  .shopcard .sc-name { font-weight: 700; font-size: 1rem; }
+  .shopcard .sc-name small { display: block; font-weight: 400; font-size: .74rem; color: var(--ink-soft); }
+  .shopcard .sc-cat { font-size: .72rem; color: var(--accent-ink); font-weight: 500; margin-top: 2px; }
+  .shopcard .sc-arrow { color: var(--ink-faint); font-size: 1.1rem; }
+
+  .sechead { display: flex; align-items: center; gap: 10px; margin: 34px 0 14px; font-weight: 700; font-size: .95rem; }
+  .sechead::after { content: ""; flex: 1; border-top: 1px dashed var(--line); }
+  .sechead .no { color: var(--accent); font-family: "Noto Serif KR", serif; }
+
+  .qr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .qr-sticker {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 12px 8px 10px; text-align: center; box-shadow: var(--shadow);
+  }
+  .qr-sticker .qr-top { font-size: .6rem; letter-spacing: .14em; color: var(--accent); font-weight: 700; margin-bottom: 6px; }
+  .qr-sticker img { width: 100%; max-width: 92px; aspect-ratio: 1; border-radius: 6px; background: #fff; display: inline-block; }
+  .qr-sticker .qr-name { font-size: .74rem; font-weight: 700; margin-top: 7px; line-height: 1.3; word-break: keep-all; }
+  .qr-sticker .qr-hint { font-size: .6rem; color: var(--ink-soft); margin-top: 2px; }
+  .qr-note { font-size: .78rem; color: var(--ink-soft); margin: 12px 4px 0; text-align: center; }
+
+  .how { display: flex; flex-direction: column; gap: 8px; }
+  .how-step {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--card2); border: 1px solid var(--line-soft); border-radius: 12px; padding: 12px 14px;
+  }
+  .how-step .hs-n {
+    flex: none; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--ink); color: var(--bg); font-size: .72rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; margin-top: 2px;
+  }
+  .how-step .hs-t { font-size: .84rem; }
+  .how-step .hs-t b { display: block; font-size: .87rem; }
+  .how-step .hs-t span { color: var(--ink-soft); font-size: .78rem; }
+
+  /* shop page */
+  .backlink {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--ink-soft); text-decoration: none; font-size: .82rem; margin: 16px 0 4px; font-weight: 500;
+  }
+  .shop-head { text-align: center; padding: 18px 0 4px; }
+  .shop-head .stamp { margin: 0 auto 12px; width: 52px; height: 52px; font-size: 1.15rem; }
+  .shop-head h1 { margin: 0; font-size: 1.5rem; font-weight: 900; word-break: keep-all; }
+  .shop-head .sh-alt { color: var(--ink-soft); font-size: .86rem; margin-top: 2px; }
+  .shop-head .sh-cat {
+    display: inline-block; margin-top: 10px; background: var(--accent-soft); color: var(--accent-ink);
+    font-size: .72rem; font-weight: 700; padding: 4px 12px; border-radius: 999px;
+  }
+
+  .menu-paper {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    box-shadow: var(--shadow); padding: 20px 18px 14px; margin-top: 18px;
+  }
+  .menu-title {
+    text-align: center; font-family: "Noto Serif KR", "Noto Sans Thai", "Noto Sans Khmer", serif; font-weight: 700;
+    font-size: .92rem; letter-spacing: .12em; color: var(--ink);
+    display: flex; align-items: center; gap: 12px; margin: 18px 0 4px;
+  }
+  .menu-title:first-child { margin-top: 0; }
+  .menu-title::before, .menu-title::after { content: ""; flex: 1; border-top: 2px solid var(--ink); opacity: .7; }
+
+  .mi { padding: 12px 2px 11px; border-bottom: 1px dashed var(--line); }
+  .mi:last-child { border-bottom: 0; }
+  .mi-row { display: flex; align-items: baseline; gap: 8px; }
+  .mi-name { font-weight: 700; font-size: .96rem; word-break: keep-all; }
+  .mi-dots { flex: 1; border-bottom: 2px dotted var(--line); min-width: 16px; transform: translateY(-4px); }
+  .mi-price { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .mi-ko { font-size: .74rem; color: var(--ink-faint); margin-top: 2px; }
+  .mi-tag { font-size: .76rem; color: var(--ink-soft); margin-top: 3px; }
+  .mi-size { display: flex; align-items: baseline; gap: 8px; padding: 3px 0 0 14px; }
+  .mi-size .sz { font-size: .82rem; color: var(--ink-soft); font-weight: 500; }
+
+  .paper-notes { margin-top: 14px; border-top: 1px solid var(--line-soft); padding-top: 10px; }
+  .paper-notes li { font-size: .76rem; color: var(--ink-soft); margin-left: -18px; margin-bottom: 2px; }
+  .order-hint {
+    margin-top: 12px; background: var(--accent-soft); color: var(--accent-ink);
+    border-radius: 10px; font-size: .76rem; padding: 8px 12px; font-weight: 500;
+  }
+
+  footer { text-align: center; margin-top: 30px; color: var(--ink-faint); font-size: .72rem; line-height: 1.7; }
+  footer .f-market { font-family: "Noto Serif KR", serif; font-weight: 700; color: var(--ink-soft); }
+</style>
+
+<div class="demo-ribbon" id="demoRibbon"></div>
+<div class="langbar"><div class="langbar-in" id="langbar" role="group" aria-label="language"></div></div>
+<div class="wrap" id="app"></div>
+
+<script>
+/* ================= LANGUAGES ================= */
+const LANGS = [
+  { code: "ko", label: "한국어" },
+  { code: "en", label: "English" },
+  { code: "vi", label: "Tiếng Việt" },
+  { code: "th", label: "ไทย" },
+  { code: "km", label: "ខ្មែរ" },
+];
+const IDX = { en: 0, vi: 1, th: 2, km: 3 };
+
+const UI = {
+  ko: { demo: "가격은 매장 메뉴판 기준이며 변동될 수 있습니다", market: "거창전통시장", marketSub: "Geochang Traditional Market", kicker: "QR Price Board", lead: "식당을 선택하면 가격표가 열립니다. 실제 운영 시 매장 앞 QR이 해당 식당 페이지로 바로 연결됩니다.", shops: "식당 목록", qrSec: "매장 부착용 QR 시안", qrNote: "실제로 작동하는 QR입니다 — 휴대폰 카메라로 스캔해 보세요.", scan: "스캔 → 가격표", howSec: "운영 방식", how: [["구글시트에 메뉴·가격 입력", "담당자는 시트만 수정하면 됩니다"], ["식당별 페이지 자동 생성", "번역 포함 · 주소는 식당 번호로 고정"], ["방문객이 QR 스캔", "설치 없이 5개 언어 가격표 열람"]], back: "전체 식당 목록", priceNote: "가격은 매장 메뉴판(2026년 8월 촬영) 기준이며 변동될 수 있습니다.", orderHint: "", updated: "메뉴판 사진 기준 · 2026. 8. 31." },
+  en: { demo: "Prices from each shop's menu board · subject to change", market: "Geochang Traditional Market", marketSub: "거창전통시장", kicker: "QR Price Board", lead: "Choose a restaurant to see its prices. On site, the QR at each shop opens that shop's page directly.", shops: "Restaurants", qrSec: "QR sticker mock-ups", qrNote: "These QR codes really work — scan one with your phone.", scan: "Scan → prices", howSec: "How it works", how: [["Menus & prices entered in a spreadsheet", "Staff only ever edit the sheet"], ["A page per shop, generated automatically", "Translations included · fixed URLs"], ["Visitors scan the QR", "Prices in 5 languages, no app needed"]], back: "All restaurants", priceNote: "Prices from menu boards photographed Aug 2026; subject to change.", orderHint: "To order, just point to the gray Korean name and show it to the staff.", updated: "From menu-board photos · Aug 31, 2026" },
+  vi: { demo: "Giá theo bảng menu của quán · có thể thay đổi", market: "Chợ truyền thống Geochang", marketSub: "거창전통시장", kicker: "QR Price Board", lead: "Chọn quán để xem bảng giá. Tại chợ, mã QR trước mỗi quán sẽ mở thẳng trang của quán đó.", shops: "Danh sách quán ăn", qrSec: "Mẫu nhãn QR dán tại quán", qrNote: "Mã QR hoạt động thật — hãy thử quét bằng điện thoại.", scan: "Quét → xem giá", howSec: "Cách vận hành", how: [["Nhập menu & giá vào bảng tính", "Nhân viên chỉ cần sửa bảng tính"], ["Tự động tạo trang cho từng quán", "Kèm bản dịch · địa chỉ cố định"], ["Khách quét mã QR", "Xem giá bằng 5 ngôn ngữ, không cần cài app"]], back: "Tất cả quán ăn", priceNote: "Giá theo bảng menu (chụp tháng 8/2026), có thể thay đổi.", orderHint: "Khi gọi món, hãy chỉ vào tên tiếng Hàn màu xám cho nhân viên xem.", updated: "Theo ảnh bảng menu · 31/8/2026" },
+  th: { demo: "ราคาตามป้ายเมนูของร้าน · อาจเปลี่ยนแปลงได้", market: "ตลาดดั้งเดิมกอชัง", marketSub: "거창전통시장", kicker: "QR Price Board", lead: "เลือกร้านเพื่อดูราคา ที่ตลาดจริง QR หน้าร้านจะเปิดหน้าของร้านนั้นโดยตรง", shops: "รายชื่อร้านอาหาร", qrSec: "ตัวอย่างสติกเกอร์ QR หน้าร้าน", qrNote: "QR ใช้งานได้จริง — ลองสแกนด้วยกล้องมือถือ", scan: "สแกน → ดูราคา", howSec: "วิธีการทำงาน", how: [["กรอกเมนูและราคาในสเปรดชีต", "เจ้าหน้าที่แก้ไขแค่ชีตเดียว"], ["สร้างหน้าเว็บของแต่ละร้านอัตโนมัติ", "มีคำแปล · URL คงที่"], ["นักท่องเที่ยวสแกน QR", "ดูราคาได้ 5 ภาษา ไม่ต้องติดตั้งแอป"]], back: "ร้านทั้งหมด", priceNote: "ราคาตามป้ายเมนู (ถ่ายเมื่อ ส.ค. 2026) อาจมีการเปลี่ยนแปลง", orderHint: "สั่งอาหารโดยชี้ชื่อเมนูภาษาเกาหลีสีเทาให้พนักงานดู", updated: "จากภาพป้ายเมนู · 31 ส.ค. 2026" },
+  km: { demo: "តម្លៃតាមផ្ទាំងម៉ឺនុយហាង · អាចប្រែប្រួល", market: "ផ្សារប្រពៃណី Geochang", marketSub: "거창전통시장", kicker: "QR Price Board", lead: "ជ្រើសរើសហាងដើម្បីមើលតម្លៃ។ នៅផ្សារ QR មុខហាងនីមួយៗបើកទំព័រហាងនោះផ្ទាល់។", shops: "បញ្ជីភោជនីយដ្ឋាន", qrSec: "គំរូស្ទីកគ័រ QR សម្រាប់ហាង", qrNote: "QR ដំណើរការពិតប្រាកដ — សាកល្បងស្កេនដោយទូរស័ព្ទ។", scan: "ស្កេន → តម្លៃ", howSec: "របៀបដំណើរការ", how: [["បញ្ចូលម៉ឺនុយ និងតម្លៃក្នុងតារាង", "បុគ្គលិកកែតែតារាងប៉ុណ្ណោះ"], ["បង្កើតទំព័រសម្រាប់ហាងនីមួយៗដោយស្វ័យប្រវត្តិ", "មានបកប្រែ · អាសយដ្ឋានថេរ"], ["ភ្ញៀវស្កេន QR", "មើលតម្លៃ 5 ភាសា ដោយមិនចាំបាច់កម្មវិធី"]], back: "ភោជនីយដ្ឋានទាំងអស់", priceNote: "តម្លៃតាមផ្ទាំងម៉ឺនុយ (ថតខែសីហា 2026) អាចប្រែប្រួល។", orderHint: "ពេលកម្មង់ សូមចង្អុលឈ្មោះជាភាសាកូរ៉េពណ៌ប្រផេះឱ្យបុគ្គលិកមើល។", updated: "តាមរូបថតម៉ឺនុយ · 31/08/2026" },
+};
+
+/* section names: [en, vi, th, km] */
+const SEC = {
+  "식사류": ["Meals", "Món chính", "อาหารจานหลัก", "មុខម្ហូប"],
+  "안주류": ["Sharing dishes (anju)", "Món nhắm", "กับแกล้ม", "ម្ហូបញ៉ាំរួមគ្នា"],
+  "주류": ["Drinks & alcohol", "Đồ uống & rượu", "เครื่องดื่ม", "ភេសជ្ជៈ & ស្រា"],
+  "계절메뉴": ["Seasonal menu", "Món theo mùa", "เมนูตามฤดูกาล", "ម៉ឺនុយតាមរដូវ"],
+  "초밥 (10개)": ["Sushi (10 pcs)", "Sushi (10 miếng)", "ซูชิ (10 คำ)", "ស៊ូស៊ី (10)"],
+  "추가초밥 (5개)": ["Extra sushi (5 pcs)", "Sushi thêm (5 miếng)", "ซูชิเพิ่ม (5 คำ)", "ស៊ូស៊ីបន្ថែម (5)"],
+  "수제돈가스": ["Handmade cutlet", "Tonkatsu nhà làm", "ทงคัตสึโฮมเมด", "Tonkatsu ធ្វើដោយដៃ"],
+  "사이드메뉴": ["Sides", "Món phụ", "เมนูทานเล่น", "មុខម្ហូបបន្ថែម"],
+  "추가메뉴": ["Extras", "Gọi thêm", "ของเพิ่ม", "បន្ថែម"],
+  "세트메뉴": ["Set menus", "Combo", "เซตเมนู", "ឈុត"],
+};
+
+/* size labels */
+const SZ = {
+  "소": ["S", "Nhỏ", "S (เล็ก)", "S (តូច)"],
+  "중": ["M", "Vừa", "M (กลาง)", "M (មធ្យម)"],
+  "대": ["L", "Lớn", "L (ใหญ่)", "L (ធំ)"],
+  "2인": ["For 2", "2 người", "2 ที่", "2 នាក់"],
+  "3인": ["For 3", "3 người", "3 ที่", "3 នាក់"],
+  "4인": ["For 4", "4 người", "4 ที่", "4 នាក់"],
+};
+
+/* menu item names: 한국어 → [en, vi, th, km] */
+const TR = {
+  "돼지국밥": ["Pork & rice soup (dwaeji-gukbap)", "Súp thịt heo ăn kèm cơm", "ซุปหมูกับข้าว (ทเวจีกุกบับ)", "ស៊ុបសាច់ជ្រូក ជាមួយបាយ"],
+  "순대국밥": ["Korean sausage & rice soup (sundae-gukbap)", "Súp dồi Hàn Quốc kèm cơm", "ซุปซุนแด (ไส้กรอกเกาหลี) กับข้าว", "ស៊ុបសាច់ក្រកកូរ៉េ ជាមួយបាយ"],
+  "피순대국밥": ["Blood-sausage & rice soup", "Súp dồi huyết kèm cơm", "ซุปไส้กรอกเลือดกับข้าว", "ស៊ុបសាច់ក្រកឈាម ជាមួយបាយ"],
+  "찰순대국밥": ["Sticky-rice sundae & rice soup", "Súp dồi gạo nếp kèm cơm", "ซุปซุนแดข้าวเหนียวกับข้าว", "ស៊ុបសាច់ក្រកបាយដំណើប ជាមួយបាយ"],
+  "내장국밥": ["Pork-offal & rice soup", "Súp lòng heo kèm cơm", "ซุปเครื่องในหมูกับข้าว", "ស៊ុបគ្រឿងក្នុងជ្រូក ជាមួយបាយ"],
+  "섞어국밥": ["Mixed pork & offal rice soup", "Súp thập cẩm (thịt + lòng) kèm cơm", "ซุปรวม (หมู+เครื่องใน) กับข้าว", "ស៊ុបលាយ (សាច់+គ្រឿងក្នុង) ជាមួយបាយ"],
+  "애기집국밥": ["Pork-uterus rice soup", "Súp tử cung heo kèm cơm", "ซุปมดลูกหมูกับข้าว", "ស៊ុបស្បូនជ្រូក ជាមួយបាយ"],
+  "암뽕국밥": ["Pork-uterus rice soup (am-ppong)", "Súp am-ppong (tử cung heo) kèm cơm", "ซุปอัมปง (มดลูกหมู) กับข้าว", "ស៊ុបស្បូនជ្រូក (am-ppong) ជាមួយបាយ"],
+  "모듬국밥": ["Assorted rice soup", "Súp thập cẩm đủ vị kèm cơm", "ซุปรวมมิตรกับข้าว", "ស៊ុបចម្រុះ ជាមួយបាយ"],
+  "(특)모듬국밥": ["Special assorted rice soup", "Súp thập cẩm đặc biệt kèm cơm", "ซุปรวมมิตรพิเศษกับข้าว", "ស៊ុបចម្រុះពិសេស ជាមួយបាយ"],
+  "살코기국밥": ["Lean-pork rice soup", "Súp thịt heo nạc kèm cơm", "ซุปหมูเนื้อล้วนกับข้าว", "ស៊ុបសាច់ជ្រូកសុទ្ធ ជាមួយបាយ"],
+  "얼큰이국밥": ["Spicy rice soup (choose base)", "Súp cay (chọn vị)", "ซุปเผ็ด (เลือกแบบได้)", "ស៊ុបហឹរ (ជ្រើសរើសមុខ)"],
+  "얼큰이우동": ["Spicy udon", "Mì udon cay", "อุด้งเผ็ด", "មីអ៊ុដុងហឹរ"],
+  "얼큰순두부": ["Spicy soft-tofu stew", "Canh đậu hũ non cay", "ซุปเต้าหู้อ่อนเผ็ด", "ស៊ុបតៅហ៊ូទន់ហឹរ"],
+  "시래기국밥": ["Dried radish-greens rice soup", "Súp lá củ cải khô kèm cơm", "ซุปใบหัวไชเท้าแห้งกับข้าว", "ស៊ុបស្លឹកឆៃថាវស្ងួត ជាមួយបាយ"],
+  "청국장": ["Rich fermented-soybean stew", "Canh đậu tương lên men đậm (cheonggukjang)", "ซุปถั่วเหลืองหมักเข้มข้น (ชองกุกจัง)", "ស៊ុបសណ្តែកសៀងផ្អាប់"],
+  "된장찌개": ["Soybean-paste stew (doenjang)", "Canh tương đậu (doenjang)", "ซุปเต้าเจี้ยวเกาหลี (ทเวนจัง)", "ស៊ុបសណ្តែកសៀង (doenjang)"],
+  "김치찌개": ["Kimchi stew", "Canh kim chi", "ซุปกิมจิ", "ស៊ុបគីមឈី"],
+  "갈비탕": ["Beef short-rib soup", "Canh sườn bò", "ซุปซี่โครงวัว", "ស៊ុបឆ្អឹងជំនីគោ"],
+  "육개장": ["Spicy beef & vegetable soup", "Canh thịt bò cay", "ซุปเนื้อวัวเผ็ด", "ស៊ុបសាច់គោហឹរ"],
+  "순두부": ["Soft-tofu stew", "Canh đậu hũ non", "ซุปเต้าหู้อ่อน", "ស៊ុបតៅហ៊ូទន់"],
+  "추어탕": ["Loach (mudfish) soup", "Canh cá chạch", "ซุปปลาไหลโคลน (ชูออทัง)", "ស៊ុបត្រីភក់ (chueotang)"],
+  "씨락국": ["Dried radish-greens soup", "Canh lá củ cải khô", "ซุปใบหัวไชเท้าแห้ง", "ស៊ុបស្លឹកឆៃថាវស្ងួត"],
+  "시레기국": ["Dried radish-greens soup", "Canh lá củ cải khô", "ซุปใบหัวไชเท้าแห้ง", "ស៊ុបស្លឹកឆៃថាវស្ងួត"],
+  "시레기국 정식": ["Radish-greens soup set meal", "Set canh lá củ cải khô", "เซตซุปใบหัวไชเท้าแห้ง", "ឈុតស៊ុបស្លឹកឆៃថាវស្ងួត"],
+  "선지국": ["Beef blood-curd soup", "Canh huyết bò", "ซุปเลือดวัว", "ស៊ុបឈាមគោកក"],
+  "소머리곰탕": ["Ox-head bone soup", "Canh đầu bò hầm", "ซุปหัววัวตุ๋น", "ស៊ុបក្បាលគោស្ងោរ"],
+  "생대구탕": ["Fresh cod soup", "Canh cá tuyết tươi", "ซุปปลาค็อดสด", "ស៊ុបត្រី cod ស្រស់"],
+  "콩나물국": ["Bean-sprout soup", "Canh giá đỗ", "ซุปถั่วงอก", "ស៊ុបសណ្តែកបណ្តុះ"],
+  "떡국": ["Rice-cake soup", "Canh bánh gạo (tteokguk)", "ซุปต๊อก (แผ่นแป้งข้าว)", "ស៊ុបនំ tteok (ធ្វើពីអង្ករ)"],
+  "칼국수": ["Knife-cut noodle soup (kalguksu)", "Mì kalguksu (mì cắt)", "ก๋วยเตี๋ยวเส้นตัด (คัลกุกซู)", "មីស៊ុប kalguksu"],
+  "들깨칼국수": ["Perilla-seed kalguksu", "Mì kalguksu hạt tía tô", "คัลกุกซูงาขี้ม้อน", "មី kalguksu គ្រាប់ perilla"],
+  "잔치국수": ["Warm thin noodles in broth", "Mì sợi nước dùng nóng", "เส้นหมี่น้ำซุปร้อน (ชันชีกุกซู)", "មីស៊ុបក្តៅ"],
+  "비빔국수": ["Spicy mixed noodles", "Mì trộn cay", "บะหมี่คลุกซอสเผ็ด", "មីលាយហឹរ"],
+  "비빔국수·물국수": ["Spicy mixed / soup noodles", "Mì trộn cay / mì nước", "บะหมี่คลุกเผ็ด / บะหมี่น้ำ", "មីលាយហឹរ / មីទឹក"],
+  "콩국수": ["Chilled soy-milk noodles", "Mì sữa đậu nành lạnh", "บะหมี่น้ำเต้าหู้เย็น", "មីទឹកសណ្តែកត្រជាក់"],
+  "열무국수": ["Young-radish kimchi noodles", "Mì kim chi củ cải non", "บะหมี่กิมจิหัวไชเท้าอ่อน", "មីគីមឈីឆៃថាវខ្ចី"],
+  "열무막국수": ["Young-radish kimchi buckwheat noodles", "Mì kiều mạch kim chi củ cải non", "มักกุกซูกิมจิหัวไชเท้าอ่อน", "មី buckwheat គីមឈីឆៃថាវខ្ចី"],
+  "우동": ["Udon", "Mì udon", "อุด้ง", "មីអ៊ុដុង"],
+  "냉모밀": ["Chilled buckwheat noodles", "Mì soba lạnh", "โซบะเย็น", "មី soba ត្រជាក់"],
+  "수제비": ["Hand-torn dough soup (sujebi)", "Canh bánh bột nặn tay (sujebi)", "ซุปแป้งเด็ดมือ (ซูเจบี)", "ស៊ុបម្សៅហែកដៃ (sujebi)"],
+  "비빔밥": ["Bibimbap (mixed rice)", "Cơm trộn bibimbap", "บิบิมบับ (ข้าวยำเกาหลี)", "បាយលាយ bibimbap"],
+  "나물 비빔밥": ["Wild-greens bibimbap", "Bibimbap rau", "บิบิมบับผักนามุล", "Bibimbap បន្លែ"],
+  "공기밥": ["Steamed rice (bowl)", "Cơm trắng (bát)", "ข้าวสวย (ถ้วย)", "បាយស (មួយចាន)"],
+  "볶음밥": ["Fried rice", "Cơm chiên", "ข้าวผัด", "បាយឆា"],
+  "모듬순대": ["Assorted sundae platter", "Dồi thập cẩm", "ซุนแดรวม", "សាច់ក្រកចម្រុះ"],
+  "전통피순대": ["Traditional blood sundae", "Dồi huyết truyền thống", "ไส้กรอกเลือดแบบดั้งเดิม", "សាច់ក្រកឈាមបែបប្រពៃណី"],
+  "피순대": ["Blood sundae", "Dồi huyết", "ไส้กรอกเลือด", "សាច់ក្រកឈាម"],
+  "찰순대": ["Sticky-rice sundae", "Dồi gạo nếp", "ซุนแดข้าวเหนียว", "សាច់ក្រកបាយដំណើប"],
+  "순대반반": ["Half & half sundae", "Dồi hai loại (nửa-nửa)", "ซุนแดครึ่งๆ สองแบบ", "សាច់ក្រកពាក់កណ្តាលៗ"],
+  "찰순대모듬": ["Sticky-rice sundae platter", "Đĩa dồi gạo nếp", "ชุดซุนแดข้าวเหนียว", "ចានសាច់ក្រកបាយដំណើប"],
+  "모둠": ["Big combo platter", "Đĩa tổng hợp lớn", "ชุดรวมใหญ่", "ចានចម្រុះធំ"],
+  "수육": ["Boiled pork slices", "Thịt heo luộc thái lát", "หมูต้มสไลซ์", "សាច់ជ្រូកស្ងោរចិត"],
+  "머리수육": ["Boiled pork-head meat", "Thịt đầu heo luộc", "หัวหมูต้ม", "សាច់ក្បាលជ្រូកស្ងោរ"],
+  "소머리수육": ["Boiled ox-head meat", "Thịt đầu bò luộc", "หัววัวต้มสไลซ์", "សាច់ក្បាលគោស្ងោរ"],
+  "피순대수육": ["Blood sundae & boiled pork", "Dồi huyết + thịt luộc", "ไส้กรอกเลือด + หมูต้ม", "សាច់ក្រកឈាម + សាច់ស្ងោរ"],
+  "수제편육": ["Handmade pressed-pork slices", "Thịt heo ép thái lát nhà làm", "หมูอัดสไลซ์โฮมเมด", "សាច់ជ្រូកចំហុយចិត (ធ្វើដោយដៃ)"],
+  "족발": ["Braised pig's trotters (jokbal)", "Giò heo hầm (jokbal)", "ขาหมูเกาหลี (จกบัล)", "ជើងជ្រូកចំហុយ (jokbal)"],
+  "왕족발": ["King-size pig's trotters", "Giò heo cỡ đại", "ขาหมูไซซ์ใหญ่", "ជើងជ្រូកទំហំធំ"],
+  "미니족발": ["Mini pig's trotters", "Giò heo cỡ nhỏ", "ขาหมูมินิ", "ជើងជ្រូកតូច"],
+  "순살족발": ["Boneless trotters", "Giò heo rút xương", "ขาหมูไร้กระดูก", "ជើងជ្រូកគ្មានឆ្អឹង"],
+  "닭발": ["Spicy chicken feet", "Chân gà cay", "ตีนไก่", "ជើងមាន់ហឹរ"],
+  "육회": ["Korean beef tartare (yukhoe)", "Bò tươi trộn kiểu Hàn (yukhoe)", "เนื้อดิบเกาหลี (ยุกฮเว)", "សាច់គោឆៅ yukhoe"],
+  "육전": ["Pan-fried beef in egg batter", "Thịt bò chiên trứng", "เนื้อชุบไข่ทอด", "សាច់គោបំពងជ្រលក់ស៊ុត"],
+  "소양곱창전골": ["Beef tripe & intestine hot pot", "Lẩu lòng bò", "หม้อไฟเครื่องในวัว", "ឆ្នាំងស៊ុបគ្រឿងក្នុងគោ"],
+  "순대전골": ["Sundae hot pot", "Lẩu dồi", "หม้อไฟซุนแด", "ឆ្នាំងស៊ុបសាច់ក្រក"],
+  "내장전골": ["Pork-offal hot pot", "Lẩu lòng heo", "หม้อไฟเครื่องในหมู", "ឆ្នាំងស៊ុបគ្រឿងក្នុងជ្រូក"],
+  "순대곱창전골": ["Sundae & intestine hot pot", "Lẩu dồi + lòng", "หม้อไฟซุนแด+เครื่องใน", "ឆ្នាំងស៊ុបសាច់ក្រក + គ្រឿងក្នុង"],
+  "소곱창전골": ["Beef-intestine hot pot", "Lẩu lòng bò", "หม้อไฟไส้วัว", "ឆ្នាំងស៊ុបពោះវៀនគោ"],
+  "대구뽈찜": ["Braised spicy cod head", "Đầu cá tuyết om cay", "หัวปลาค็อดตุ๋นเผ็ด", "ក្បាលត្រី cod ចំហុយហឹរ"],
+  "홍어삼합": ["Fermented skate trio (samhap)", "Bộ ba cá đuối lên men (samhap)", "ปลากระเบนหมักเสิร์ฟสามอย่าง", "ត្រីបបែលផ្អាប់ samhap"],
+  "낙지볶음": ["Spicy stir-fried octopus", "Bạch tuộc xào cay", "ปลาหมึกสายผัดเผ็ด", "មឹកឆាហឹរ"],
+  "돼지볶음": ["Spicy stir-fried pork", "Thịt heo xào cay", "หมูผัดเผ็ด", "សាច់ជ្រូកឆាហឹរ"],
+  "땡초 부추전": ["Chili & chive pancake", "Bánh hẹ ớt cay chiên", "แพนเค้กกุยช่ายพริก", "នំចៀនស្លឹកគុយឆាយ ម្ទេស"],
+  "땡초부추전": ["Chili & chive pancake", "Bánh hẹ ớt cay chiên", "แพนเค้กกุยช่ายพริก", "នំចៀនស្លឹកគុយឆាយ ម្ទេស"],
+  "김치부침전": ["Kimchi pancake", "Bánh kim chi chiên", "แพนเค้กกิมจิ", "នំចៀនគីមឈី"],
+  "메밀묵": ["Buckwheat jelly", "Thạch kiều mạch", "เยลลี่บัควีท (เมมิลมุก)", "ចាហួយ buckwheat"],
+  "메밀묵·쟁반묵": ["Buckwheat jelly / jelly platter", "Thạch kiều mạch / khay thạch", "เยลลี่บัควีท / ถาดใหญ่", "ចាហួយ buckwheat / ថាសធំ"],
+  "도토리묵": ["Acorn jelly", "Thạch hạt sồi", "เยลลี่ลูกโอ๊ก (โทโทริมุก)", "ចាហួយគ្រាប់ oak"],
+  "접시묵": ["Jelly plate", "Đĩa thạch", "เยลลี่ (จาน)", "ចាហួយ (មួយចាន)"],
+  "도토리묵무침": ["Seasoned acorn-jelly salad", "Thạch hạt sồi trộn gia vị", "ยำเยลลี่ลูกโอ๊ก", "ចាហួយគ្រាប់ oak លាយគ្រឿង"],
+  "비빔만두": ["Dumplings with spicy salad", "Bánh xếp trộn cay", "เกี๊ยวคลุกซอสเผ็ด", "គាវលាយហឹរ"],
+  "만두": ["Dumplings (mandu)", "Bánh xếp mandu", "เกี๊ยวเกาหลี (มันดู)", "គាវកូរ៉េ (mandu)"],
+  "모둠초밥": ["Assorted sushi", "Sushi thập cẩm", "ซูชิรวม", "ស៊ូស៊ីចម្រុះ"],
+  "광어초밥": ["Flatfish sushi", "Sushi cá bơn", "ซูชิปลาตาเดียว", "ស៊ូស៊ីត្រី halibut"],
+  "연어초밥": ["Salmon sushi", "Sushi cá hồi", "ซูชิแซลมอน", "ស៊ូស៊ីត្រី salmon"],
+  "반반초밥": ["Half & half sushi", "Sushi hai loại (nửa-nửa)", "ซูชิครึ่งๆ สองแบบ", "ស៊ូស៊ីពាក់កណ្តាលៗ"],
+  "새우초밥": ["Shrimp sushi", "Sushi tôm", "ซูชิกุ้ง", "ស៊ូស៊ីបង្គា"],
+  "떡갈비초밥": ["Grilled beef-patty sushi", "Sushi thịt viên nướng (tteok-galbi)", "ซูชิต๊อกคัลบี (เนื้อย่าง)", "ស៊ូស៊ីសាច់អាំង tteok-galbi"],
+  "유부초밥": ["Fried-tofu pocket sushi (inari)", "Sushi đậu hũ chiên (inari)", "ซูชิเต้าหู้ทอด (อินาริ)", "ស៊ូស៊ីតៅហ៊ូបំពង (inari)"],
+  "광어": ["Flatfish", "Cá bơn", "ปลาตาเดียว", "ត្រី halibut"],
+  "연어": ["Salmon", "Cá hồi", "แซลมอน", "ត្រី salmon"],
+  "새우": ["Shrimp", "Tôm", "กุ้ง", "បង្គា"],
+  "떡갈비": ["Grilled beef patty", "Thịt viên nướng", "ต๊อกคัลบี", "សាច់អាំង tteok-galbi"],
+  "등심돈가스": ["Pork-loin cutlet (tonkatsu)", "Tonkatsu thăn heo", "ทงคัตสึสันนอก", "សាច់ជ្រូកបំពងម្សៅ tonkatsu"],
+  "타코야끼": ["Takoyaki", "Takoyaki (bánh bạch tuộc)", "ทาโกะยากิ", "Takoyaki (នំមឹក)"],
+  "새우튀김": ["Fried shrimp", "Tôm chiên giòn", "กุ้งทอด", "បង្គាបំពង"],
+  "냉모밀육수": ["Extra soba broth", "Nước dùng soba thêm", "น้ำซุปโซบะเพิ่ม", "ទឹកស៊ុប soba បន្ថែម"],
+  "돈가스소스": ["Cutlet sauce", "Sốt tonkatsu", "ซอสทงคัตสึ", "ទឹកជ្រលក់ tonkatsu"],
+  "세트 A": ["Set A", "Combo A", "เซต A", "ឈុត A"],
+  "세트 B": ["Set B", "Combo B", "เซต B", "ឈុត B"],
+  "세트 C": ["Set C", "Combo C", "เซต C", "ឈុត C"],
+  "세트 D": ["Set D", "Combo D", "เซต D", "ឈុត D"],
+  "국포장": ["Soup to go (family pack)", "Súp mang về (phần lớn)", "ซุปกลับบ้าน (แพ็คใหญ่)", "ស៊ុបខ្ចប់យកទៅផ្ទះ"],
+  "사리추가": ["Extra add-in", "Thêm topping", "ท็อปปิงเพิ่ม", "បន្ថែមមី/គ្រឿង"],
+  "라면·우동·당면사리": ["Extra noodles (ramen/udon/glass)", "Thêm mì (ramen/udon/miến)", "เส้นเพิ่ม (รามยอน/อุด้ง/วุ้นเส้น)", "មីបន្ថែម (ramen/udon/មីសួ)"],
+  "야채추가": ["Extra vegetables", "Thêm rau", "ผักเพิ่ม", "បន្លែបន្ថែម"],
+  "소주": ["Soju", "Rượu soju", "โซจู", "ស្រា soju"],
+  "맥주": ["Beer", "Bia", "เบียร์", "ស្រាបៀរ"],
+  "소주 · 맥주": ["Soju / beer", "Soju / bia", "โซจู / เบียร์", "Soju / ស្រាបៀរ"],
+  "막걸리": ["Makgeolli (rice wine)", "Rượu gạo makgeolli", "มักก็อลลี (สาโทเกาหลี)", "ស្រាអង្ករ makgeolli"],
+  "무알콜 맥주": ["Non-alcoholic beer", "Bia không cồn", "เบียร์ไร้แอลกอฮอล์", "ស្រាបៀរគ្មានអាល់កុល"],
+  "음료수": ["Soft drink", "Nước ngọt", "เครื่องดื่ม", "ភេសជ្ជៈ"],
+  "음료": ["Soft drink", "Nước ngọt", "เครื่องดื่ม", "ភេសជ្ជៈ"],
+};
+
+/* ================= SHOP DATA ================= */
+/* tag / cat / notes: {ko,en,vi,th,km} */
+const SHOPS = [
+  {
+    id: "01", name: "신미식당", rom: "Sinmi Sikdang",
+    cat: { ko: "국밥 · 순대 · 족발", en: "Rice soups · sundae · trotters", vi: "Súp cơm · dồi · giò heo", th: "กุกบับ · ซุนแด · ขาหมู", km: "ស៊ុបបាយ · sundae · ជើងជ្រូក" },
+    sections: [
+      { t: "식사류", items: [
+        { ko: "돼지국밥", p: 9000 }, { ko: "피순대국밥", p: 9000 }, { ko: "순대국밥", p: 9000 },
+        { ko: "내장국밥", p: 9000 }, { ko: "애기집국밥", p: 9000 }, { ko: "모듬국밥", p: 9000 },
+        { ko: "청국장", p: 9000 }, { ko: "된장찌개", p: 9000 }, { ko: "김치찌개", p: 10000 },
+        { ko: "갈비탕", p: 11000, tag: { ko: "호주산", en: "Australian beef", vi: "Bò Úc", th: "เนื้อออสเตรเลีย", km: "សាច់គោអូស្ត្រាលី" } },
+        { ko: "육개장", p: 11000 },
+      ]},
+      { t: "안주류", items: [
+        { ko: "모듬순대", sizes: [["소", 10000], ["중", 15000], ["대", 20000]] },
+        { ko: "족발", tag: { ko: "국내산", en: "Korean pork", vi: "Heo Hàn Quốc", th: "หมูเกาหลี", km: "ជ្រូកកូរ៉េ" }, sizes: [["소", 12000], ["대", 20000]] },
+        { ko: "수육", sizes: [["소", 15000], ["중", 20000], ["대", 25000]] },
+        { ko: "왕족발", p: 25000, tag: { ko: "독일산 · 1개", en: "German pork · 1 pc", vi: "Heo Đức · 1 cái", th: "หมูเยอรมัน · 1 ชิ้น", km: "ជ្រូកអាល្លឺម៉ង់ · 1" } },
+      ]},
+      { t: "주류", items: [
+        { ko: "소주 · 맥주", p: 4000 }, { ko: "막걸리", p: 3000 }, { ko: "음료수", p: 2000 },
+      ]},
+    ],
+    notes: {
+      ko: ["국밥 곱빼기 주문 시 2,000원 추가", "아침식사 됩니다", "돼지고기·쌀: 국내산", "전화 055-943-8186"],
+      en: ["Extra-large soup +₩2,000", "Breakfast served", "Pork & rice: Korean", "Tel. 055-943-8186"],
+      vi: ["Tô lớn +2.000₩", "Có phục vụ bữa sáng", "Thịt heo & gạo: Hàn Quốc", "ĐT 055-943-8186"],
+      th: ["ชามใหญ่พิเศษ +2,000 วอน", "เปิดขายมื้อเช้า", "หมูและข้าว: ผลิตในเกาหลี", "โทร 055-943-8186"],
+      km: ["ចានធំបន្ថែម +2,000 វ៉ុន", "មានអាហារពេលព្រឹក", "សាច់ជ្រូក & អង្ករ៖ កូរ៉េ", "ទូរស័ព្ទ 055-943-8186"],
+    },
+  },
+  {
+    id: "02", name: "외갓집", rom: "Oegatjip",
+    cat: { ko: "한식 · 계절메뉴", en: "Korean home-style", vi: "Món Hàn kiểu gia đình", th: "อาหารเกาหลีโฮมเมด", km: "ម្ហូបកូរ៉េបែបផ្ទះ" },
+    sections: [
+      { t: "식사류", items: [
+        { ko: "낙지볶음", p: 10000, tag: { ko: "2인 이상 · 1인분 가격", en: "Min. 2 servings · price per serving", vi: "Từ 2 phần · giá mỗi phần", th: "ขั้นต่ำ 2 ที่ · ราคาต่อที่", km: "យ៉ាងតិច 2 · តម្លៃក្នុង 1 នាក់" } },
+        { ko: "나물 비빔밥", p: 7000 },
+        { ko: "땡초 부추전", p: 10000 },
+        { ko: "김치부침전", p: null },
+      ]},
+      { t: "계절메뉴", items: [
+        { ko: "열무국수", p: 7000 }, { ko: "떡국", p: 7000 },
+        { ko: "돼지볶음", p: 10000, tag: { ko: "2인 이상 · 1인분 가격", en: "Min. 2 servings · price per serving", vi: "Từ 2 phần · giá mỗi phần", th: "ขั้นต่ำ 2 ที่ · ราคาต่อที่", km: "យ៉ាងតិច 2 · តម្លៃក្នុង 1 នាក់" } },
+      ]},
+      { t: "주류", items: [
+        { ko: "소주", p: 4000 }, { ko: "맥주", p: 4000 }, { ko: "막걸리", p: 3000 }, { ko: "음료수", p: 2000 },
+      ]},
+    ],
+    notes: { ko: [], en: [], vi: [], th: [], km: [] },
+  },
+  {
+    id: "03", name: "단골식당", rom: "Dangol Sikdang",
+    cat: { ko: "국밥 · 순대 · 전골", en: "Rice soups & hot pots", vi: "Súp cơm & lẩu", th: "กุกบับ & หม้อไฟ", km: "ស៊ុបបាយ & ឆ្នាំងស៊ុប" },
+    sections: [
+      { t: "식사류", items: [
+        { ko: "돼지국밥", p: 9000 }, { ko: "순대국밥", p: 9000 }, { ko: "피순대국밥", p: 9000 },
+        { ko: "섞어국밥", p: 9000 }, { ko: "내장국밥", p: 9000 }, { ko: "암뽕국밥", p: 10000 },
+        { ko: "살코기국밥", p: 10000, tag: { ko: "곱빼기 2,000원 추가", en: "Extra-large +₩2,000", vi: "Tô lớn +2.000₩", th: "ชามใหญ่ +2,000 วอน", km: "ចានធំ +2,000" } },
+        { ko: "공기밥", p: 1000 },
+        { ko: "볶음밥", p: 2000, tag: { ko: "2인 이상 주문", en: "Min. 2 orders", vi: "Gọi từ 2 phần", th: "สั่งขั้นต่ำ 2 ที่", km: "កម្មង់យ៉ាងតិច 2" } },
+        { ko: "라면·우동·당면사리", p: 2000 }, { ko: "야채추가", p: 2000 },
+      ]},
+      { t: "안주류", items: [
+        { ko: "소양곱창전골", sizes: [["대", 43000], ["중", 30000]] },
+        { ko: "순대전골", p: 10000 }, { ko: "내장전골", p: 10000 },
+        { ko: "모둠", p: 21000, tag: { ko: "수육+피순대+찰순대+내장", en: "Boiled pork + blood & sticky-rice sundae + offal", vi: "Thịt luộc + dồi huyết + dồi nếp + lòng", th: "หมูต้ม+ไส้กรอกเลือด+ซุนแดข้าวเหนียว+เครื่องใน", km: "សាច់ស្ងោរ + សាច់ក្រក 2 មុខ + គ្រឿងក្នុង" } },
+        { ko: "머리수육", p: 15000 }, { ko: "피순대", p: 15000 }, { ko: "순대반반", p: 15000 },
+        { ko: "찰순대", sizes: [["대", 15000], ["중", 8000]] },
+        { ko: "홍어삼합", sizes: [["대", 35000], ["중", 25000]] },
+        { ko: "왕족발", p: 25000 }, { ko: "미니족발", p: 12000 },
+      ]},
+      { t: "주류", items: [
+        { ko: "소주 · 맥주", p: 4000 }, { ko: "막걸리", p: 3000 }, { ko: "무알콜 맥주", p: 3000 }, { ko: "음료수", p: 2000 },
+      ]},
+    ],
+    notes: {
+      ko: ["주문은 1인 1메뉴 꼭 지켜 주세요", "모둠: 2인 식사 주문 시 3,000원 할인"],
+      en: ["One order per person, please", "Combo platter: ₩3,000 off with 2 meal orders"],
+      vi: ["Vui lòng mỗi người gọi 1 món", "Đĩa tổng hợp: giảm 3.000₩ khi gọi 2 suất ăn"],
+      th: ["กรุณาสั่ง 1 เมนูต่อ 1 ท่าน", "ชุดรวม: ลด 3,000 วอนเมื่อสั่งอาหาร 2 ที่"],
+      km: ["សូមកម្មង់ 1 មុខក្នុង 1 នាក់", "ចានចម្រុះ៖ បញ្ចុះ 3,000 វ៉ុន ពេលកម្មង់អាហារ 2"],
+    },
+  },
+  {
+    id: "04", name: "송가네국밥", rom: "Songgane Gukbap",
+    cat: { ko: "국밥 전문", en: "Gukbap specialist", vi: "Chuyên súp cơm", th: "ร้านกุกบับ", km: "ជំនាញស៊ុបបាយ" },
+    sections: [
+      { t: "식사류", items: [
+        { ko: "돼지국밥", p: 9000, tag: { ko: "고기", en: "pork", vi: "thịt heo", th: "เนื้อหมู", km: "សាច់ជ្រូក" } },
+        { ko: "내장국밥", p: 9000, tag: { ko: "고기+내장", en: "pork + offal", vi: "thịt + lòng", th: "หมู+เครื่องใน", km: "សាច់ + គ្រឿងក្នុង" } },
+        { ko: "순대국밥", p: 9000, tag: { ko: "고기+찰순대", en: "pork + sticky-rice sundae", vi: "thịt + dồi nếp", th: "หมู+ซุนแดข้าวเหนียว", km: "សាច់ + សាច់ក្រកដំណើប" } },
+        { ko: "섞어국밥", p: 9000, tag: { ko: "고기+내장+찰순대", en: "pork + offal + sundae", vi: "thịt + lòng + dồi", th: "หมู+เครื่องใน+ซุนแด", km: "សាច់ + គ្រឿងក្នុង + សាច់ក្រក" } },
+        { ko: "피순대국밥", p: 9000, tag: { ko: "고기+피순대", en: "pork + blood sundae", vi: "thịt + dồi huyết", th: "หมู+ไส้กรอกเลือด", km: "សាច់ + សាច់ក្រកឈាម" } },
+        { ko: "암뽕국밥", p: 10000 },
+        { ko: "살코기국밥", p: 10000 },
+        { ko: "얼큰이국밥", p: 10000, tag: { ko: "돼지/내장/순대/섞어/피순대 택1 · 살코기 +1,000원", en: "Choose a base · lean pork +₩1,000", vi: "Chọn vị · thịt nạc +1.000₩", th: "เลือกแบบได้ · หมูเนื้อล้วน +1,000", km: "ជ្រើសរើសមុខ · សាច់សុទ្ធ +1,000" } },
+        { ko: "얼큰이우동", p: 11000 },
+        { ko: "얼큰순두부", p: 11000 },
+        { ko: "만두", p: 3500, tag: { ko: "고기/매콤/갈비 택1", en: "Choose: meat / spicy / galbi", vi: "Chọn: thịt / cay / galbi", th: "เลือก: หมู / เผ็ด / คัลบี", km: "ជ្រើស៖ សាច់ / ហឹរ / galbi" } },
+        { ko: "공기밥", p: 1000 },
+      ]},
+      { t: "안주류", items: [
+        { ko: "순대곱창전골", tag: { ko: "공기밥 별도", en: "Rice sold separately", vi: "Cơm tính riêng", th: "ข้าวคิดแยก", km: "បាយគិតដោយឡែក" }, sizes: [["2인", 25000], ["3인", 35000], ["4인", 44000]] },
+        { ko: "사리추가", p: 2000, tag: { ko: "우동/당면/옹심이만두/야채 택1", en: "udon / glass noodles / dumpling / veg — pick 1", vi: "udon / miến / bánh xếp / rau — chọn 1", th: "อุด้ง/วุ้นเส้น/เกี๊ยว/ผัก เลือก 1", km: "ជ្រើស 1 មុខ" } },
+        { ko: "찰순대", p: 7000 },
+        { ko: "피순대", sizes: [["소", 11000], ["중", 17000], ["대", 23000]] },
+        { ko: "모듬순대", tag: { ko: "찰순대+피순대+내장", en: "sticky-rice + blood sundae + offal", vi: "dồi nếp + dồi huyết + lòng", th: "ซุนแด 2 แบบ + เครื่องใน", km: "សាច់ក្រក 2 មុខ + គ្រឿងក្នុង" }, sizes: [["소", 12000], ["중", 20000], ["대", 30000]] },
+        { ko: "수육", sizes: [["소", 15000], ["중", 22000], ["대", 30000]] },
+        { ko: "순살족발", sizes: [["소", 13000], ["대", 25000]] },
+        { ko: "국포장", tag: { ko: "살코기·얼큰이 변경 2,000원 추가", en: "Lean/spicy version +₩2,000", vi: "Đổi vị nạc/cay +2.000₩", th: "เปลี่ยนเป็นเนื้อล้วน/เผ็ด +2,000", km: "ប្តូរមុខ +2,000" }, sizes: [["소", 17000], ["대", 24000]] },
+      ]},
+      { t: "주류", items: [
+        { ko: "소주", p: 4000 }, { ko: "맥주", p: 4000 }, { ko: "막걸리", p: 3000 }, { ko: "음료", p: 2000 },
+      ]},
+    ],
+    notes: {
+      ko: ["국밥 특(곱빼기) 2,000원 추가"],
+      en: ["Extra-large soup +₩2,000"],
+      vi: ["Tô lớn +2.000₩"],
+      th: ["ชามใหญ่พิเศษ +2,000 วอน"],
+      km: ["ចានធំបន្ថែម +2,000 វ៉ុន"],
+    },
+  },
+  {
+    id: "05", name: "시장추어탕", rom: "Sijang Chueotang",
+    cat: { ko: "추어탕 · 국수", en: "Loach soup & noodles", vi: "Canh cá chạch & mì", th: "ซุปปลาไหล & เส้น", km: "ស៊ុបត្រី & មី" },
+    sections: [
+      { t: "식사류", items: [
+        { ko: "추어탕", p: 8000 }, { ko: "칼국수", p: 6000 }, { ko: "수제비", p: 6000 },
+      ]},
+      { t: "주류", items: [
+        { ko: "소주", p: 4000 }, { ko: "맥주", p: 4000 }, { ko: "막걸리", p: 3000 }, { ko: "음료수", p: 2000 },
+      ]},
+    ],
+    notes: {
+      ko: ["포장됩니다", "국내산 미꾸라지·쌀·배추만 사용합니다"],
+      en: ["Takeout available", "Only Korean loach, rice & cabbage used"],
+      vi: ["Có bán mang về", "Chỉ dùng cá chạch, gạo, cải thảo Hàn Quốc"],
+      th: ["สั่งกลับบ้านได้", "ใช้ปลาไหล ข้าว และผักกาดเกาหลีเท่านั้น"],
+      km: ["អាចខ្ចប់យកទៅបាន", "ប្រើត្រី អង្ករ និងស្ពៃកូរ៉េតែប៉ុណ្ណោះ"],
+    },
+  },
+  {
+    id: "06", name: "초원식당", rom: "Chowon Sikdang",
+    cat: { ko: "소머리곰탕 · 한식", en: "Ox-head soup & Korean dishes", vi: "Canh đầu bò & món Hàn", th: "ซุปหัววัว & อาหารเกาหลี", km: "ស៊ុបក្បាលគោ & ម្ហូបកូរ៉េ" },
+    sections: [
+      { t: "식사류", items: [
+        { ko: "씨락국", p: 9000 }, { ko: "선지국", p: 10000 }, { ko: "소머리곰탕", p: 13000 },
+        { ko: "생대구탕", p: 15000 }, { ko: "열무막국수", p: 10000 },
+      ]},
+      { t: "안주류", items: [
+        { ko: "소머리수육", sizes: [["중", 35000], ["대", 45000]] },
+        { ko: "육회", p: 30000 },
+        { ko: "소곱창전골", sizes: [["중", 35000], ["대", 45000]] },
+        { ko: "대구뽈찜", sizes: [["중", 35000], ["대", 45000]] },
+      ]},
+    ],
+    notes: { ko: [], en: [], vi: [], th: [], km: [] },
+  },
+  {
+    id: "07", name: "정한분식", rom: "Jeonghan Bunsik",
+    cat: { ko: "순대 · 족발 · 국밥", en: "Sundae · trotters · gukbap", vi: "Dồi · giò heo · súp cơm", th: "ซุนแด · ขาหมู · กุกบับ", km: "Sundae · ជើងជ្រូក · ស៊ុបបាយ" },
+    sections: [
+      { t: "식사류", items: [
+        { ko: "돼지국밥", p: 9000 }, { ko: "피순대국밥", p: 9000 }, { ko: "찰순대국밥", p: 9000 },
+        { ko: "(특)모듬국밥", p: 11000 }, { ko: "암뽕국밥", p: 10000 },
+      ]},
+      { t: "안주류", items: [
+        { ko: "전통피순대", sizes: [["대", 20000], ["소", 15000]] },
+        { ko: "피순대수육", sizes: [["대", 25000], ["소", 20000]] },
+        { ko: "미니족발", sizes: [["대", 22000], ["소", 17000]] },
+        { ko: "왕족발", sizes: [["대", 33000], ["소", 28000]] },
+        { ko: "찰순대모듬", p: 8000 },
+        { ko: "수제편육", sizes: [["대", 20000], ["소", 15000]] },
+        { ko: "닭발", sizes: [["대", 15000]] },
+      ]},
+      { t: "주류", items: [
+        { ko: "소주", p: 4000 }, { ko: "맥주", p: 4000 }, { ko: "막걸리", p: 3000 }, { ko: "음료수", p: 2000 },
+      ]},
+    ],
+    notes: {
+      ko: ["전 메뉴 포장됩니다", "전 메뉴 국내산"],
+      en: ["Everything available to go", "All ingredients Korean"],
+      vi: ["Tất cả món đều bán mang về", "Nguyên liệu 100% Hàn Quốc"],
+      th: ["ทุกเมนูสั่งกลับบ้านได้", "วัตถุดิบเกาหลีทั้งหมด"],
+      km: ["គ្រប់មុខអាចខ្ចប់បាន", "គ្រឿងផ្សំកូរ៉េទាំងអស់"],
+    },
+  },
+  {
+    id: "08", name: "거창묵집", rom: "Geochang Mukjip",
+    cat: { ko: "묵 · 전 · 국수", en: "Jelly, pancakes & noodles", vi: "Thạch · bánh chiên · mì", th: "มุก · แพนเค้ก · เส้น", km: "ចាហួយ · នំចៀន · មី" },
+    sections: [
+      { t: "식사류", items: [
+        { ko: "청국장", p: 8000 },
+        { ko: "비빔밥", p: 6000, tag: { ko: "포장 7,000원", en: "To go ₩7,000", vi: "Mang về 7.000₩", th: "กลับบ้าน 7,000 วอน", km: "ខ្ចប់ 7,000" } },
+        { ko: "시레기국 정식", p: 6000 },
+        { ko: "메밀묵·쟁반묵", p: 6000, tag: { ko: "포장 7,000원", en: "To go ₩7,000", vi: "Mang về 7.000₩", th: "กลับบ้าน 7,000 วอน", km: "ខ្ចប់ 7,000" } },
+        { ko: "비빔국수·물국수", p: 6000, tag: { ko: "2인분 이상", en: "Min. 2 servings", vi: "Từ 2 phần", th: "ขั้นต่ำ 2 ที่", km: "យ៉ាងតិច 2" } },
+        { ko: "육전", p: 10000, tag: { ko: "포장 12,000원", en: "To go ₩12,000", vi: "Mang về 12.000₩", th: "กลับบ้าน 12,000 วอน", km: "ខ្ចប់ 12,000" } },
+        { ko: "땡초부추전", p: 7000 },
+        { ko: "도토리묵무침", p: 9000 },
+        { ko: "비빔만두", p: 8000 },
+      ]},
+    ],
+    notes: {
+      ko: ["저렴한 가격에 제공되는 식사이오니 현금결제나 계좌이체 부탁드립니다"],
+      en: ["Please pay by cash or bank transfer"],
+      vi: ["Vui lòng thanh toán tiền mặt hoặc chuyển khoản"],
+      th: ["กรุณาชำระเงินสดหรือโอนเงิน"],
+      km: ["សូមបង់ជាសាច់ប្រាក់ ឬផ្ទេរតាមធនាគារ"],
+    },
+  },
+  {
+    id: "09", name: "거창식당", rom: "Geochang Sikdang",
+    cat: { ko: "국밥 · 순대", en: "Gukbap & sundae", vi: "Súp cơm & dồi", th: "กุกบับ & ซุนแด", km: "ស៊ុបបាយ & sundae" },
+    sections: [
+      { t: "식사류", items: [
+        { ko: "돼지국밥", p: 8000 }, { ko: "순대국밥", p: 8000 }, { ko: "순두부", p: 8000 }, { ko: "잔치국수", p: 6000 },
+      ]},
+      { t: "안주류", items: [
+        { ko: "피순대", sizes: [["대", 15000], ["소", 10000]] },
+        { ko: "모듬순대", sizes: [["대", 15000], ["소", 10000]] },
+        { ko: "순대전골", sizes: [["대", 20000], ["소", 15000]] },
+        { ko: "수육", sizes: [["대", 15000], ["소", 10000]] },
+      ]},
+      { t: "주류", items: [
+        { ko: "소주", p: 4000 }, { ko: "맥주", p: 4000 }, { ko: "막걸리", p: 3000 }, { ko: "음료수", p: 2000 },
+      ]},
+    ],
+    notes: {
+      ko: ["쌀·김치·고춧가루: 국내산"],
+      en: ["Rice, kimchi & chili powder: Korean"],
+      vi: ["Gạo, kim chi, ớt bột: Hàn Quốc"],
+      th: ["ข้าว กิมจิ พริกป่น: ผลิตในเกาหลี"],
+      km: ["អង្ករ គីមឈី ម្ទេសម្សៅ៖ កូរ៉េ"],
+    },
+  },
+  {
+    id: "10", name: "스시&카츠", rom: "Sushi & Katsu",
+    cat: { ko: "초밥 · 돈가스", en: "Sushi & pork cutlet", vi: "Sushi & tonkatsu", th: "ซูชิ & ทงคัตสึ", km: "ស៊ូស៊ី & tonkatsu" },
+    sections: [
+      { t: "초밥 (10개)", items: [
+        { ko: "모둠초밥", p: 13000 }, { ko: "광어초밥", p: 19000 }, { ko: "연어초밥", p: 19000 },
+        { ko: "반반초밥", p: 19000 },
+        { ko: "새우초밥", p: 13000, tag: { ko: "찐새우·생새우 모둠", en: "steamed & raw mix", vi: "tôm hấp & sống", th: "กุ้งนึ่ง+กุ้งดิบ", km: "បង្គាចំហុយ & ឆៅ" } },
+        { ko: "떡갈비초밥", p: 13000 }, { ko: "유부초밥", p: 11000 },
+      ]},
+      { t: "추가초밥 (5개)", items: [
+        { ko: "광어", p: 10000 }, { ko: "연어", p: 10000 }, { ko: "새우", p: 6500 }, { ko: "떡갈비", p: 6500 },
+      ]},
+      { t: "수제돈가스", items: [ { ko: "등심돈가스", p: 10900 } ]},
+      { t: "사이드메뉴", items: [
+        { ko: "우동", p: 6000 }, { ko: "냉모밀", p: 8000 },
+        { ko: "타코야끼", p: 6000, tag: { ko: "8개", en: "8 pcs", vi: "8 viên", th: "8 ชิ้น", km: "8 គ្រាប់" } },
+        { ko: "새우튀김", p: 6000, tag: { ko: "5개", en: "5 pcs", vi: "5 con", th: "5 ชิ้น", km: "5" } },
+      ]},
+      { t: "추가메뉴", items: [
+        { ko: "냉모밀육수", p: 4000 }, { ko: "돈가스소스", p: 1000 }, { ko: "공기밥", p: 1000 },
+        { ko: "음료", p: 2000, tag: { ko: "콜라·사이다", en: "cola / sprite", vi: "cola / soda", th: "โคล่า/สไปรท์", km: "កូឡា / ស្ព្រៃ" } },
+      ]},
+      { t: "세트메뉴", items: [
+        { ko: "세트 A", p: 25000, tag: { ko: "초밥 20개 + 미니우동 2 + 샐러드 + 타코야끼 4개", en: "Sushi 20 + mini udon ×2 + salad + takoyaki 4", vi: "20 sushi + 2 udon nhỏ + salad + 4 takoyaki", th: "ซูชิ 20 + มินิอุด้ง 2 + สลัด + ทาโกะยากิ 4", km: "ស៊ូស៊ី 20 + អ៊ុដុងតូច 2 + សាឡាដ + takoyaki 4" } },
+        { ko: "세트 B", p: 23000, tag: { ko: "초밥 10개 + 미니우동 2 + 등심돈가스 + 타코야끼 4개", en: "Sushi 10 + mini udon ×2 + cutlet + takoyaki 4", vi: "10 sushi + 2 udon nhỏ + tonkatsu + 4 takoyaki", th: "ซูชิ 10 + มินิอุด้ง 2 + ทงคัตสึ + ทาโกะยากิ 4", km: "ស៊ូស៊ី 10 + អ៊ុដុងតូច 2 + tonkatsu + takoyaki 4" } },
+        { ko: "세트 C", p: 18000, tag: { ko: "등심돈가스 + 냉모밀 + 타코야끼 4개", en: "Cutlet + chilled soba + takoyaki 4", vi: "Tonkatsu + soba lạnh + 4 takoyaki", th: "ทงคัตสึ + โซบะเย็น + ทาโกะยากิ 4", km: "Tonkatsu + soba ត្រជាក់ + takoyaki 4" } },
+        { ko: "세트 D", p: 16000, tag: { ko: "등심돈가스 + 우동 + 타코야끼 4개", en: "Cutlet + udon + takoyaki 4", vi: "Tonkatsu + udon + 4 takoyaki", th: "ทงคัตสึ + อุด้ง + ทาโกะยากิ 4", km: "Tonkatsu + udon + takoyaki 4" } },
+      ]},
+    ],
+    notes: { ko: [], en: [], vi: [], th: [], km: [] },
+  },
+  {
+    id: "11", name: "오두막집", rom: "Odumakjip",
+    cat: { ko: "국수 · 수제비", en: "Noodles & sujebi", vi: "Mì & sujebi", th: "เส้น & ซูเจบี", km: "មី & sujebi" },
+    sections: [
+      { t: "식사류", items: [
+        { ko: "수제비", p: 6000 }, { ko: "잔치국수", p: 6000 }, { ko: "칼국수", p: 6000 },
+      ]},
+    ],
+    notes: { ko: [], en: [], vi: [], th: [], km: [] },
+  },
+  {
+    id: "12", name: "포항식당", rom: "Pohang Sikdang",
+    cat: { ko: "묵 · 국수 · 국", en: "Jelly, noodles & soups", vi: "Thạch · mì · canh", th: "มุก · เส้น · ซุป", km: "ចាហួយ · មី · ស៊ុប" },
+    sections: [
+      { t: "식사류", items: [
+        { ko: "메밀묵", p: 5000 }, { ko: "도토리묵", p: 5000 }, { ko: "접시묵", p: 6000 },
+        { ko: "비빔밥", p: 5000 }, { ko: "잔치국수", p: 5000 }, { ko: "비빔국수", p: 6000 },
+        { ko: "콩국수", p: 7000 }, { ko: "콩나물국", p: 6000 }, { ko: "시레기국", p: 5000 },
+        { ko: "공기밥", p: 1000 },
+      ]},
+      { t: "주류", items: [
+        { ko: "소주", p: 4000 }, { ko: "맥주", p: 4000 }, { ko: "막걸리", p: 3000 },
+      ]},
+    ],
+    notes: {
+      ko: ["곱배기 1,000원 추가"],
+      en: ["Extra-large +₩1,000"],
+      vi: ["Phần lớn +1.000₩"],
+      th: ["ชามใหญ่ +1,000 วอน"],
+      km: ["ចានធំ +1,000 វ៉ុន"],
+    },
+  },
+  {
+    id: "13", name: "하하식당", rom: "Haha Sikdang",
+    cat: { ko: "한식 · 국수", en: "Korean meals & noodles", vi: "Món Hàn & mì", th: "อาหารเกาหลี & เส้น", km: "ម្ហូបកូរ៉េ & មី" },
+    sections: [
+      { t: "식사류", items: [
+        { ko: "비빔밥", p: 5000 }, { ko: "떡국", p: 7000 }, { ko: "칼국수", p: 6000 },
+        { ko: "들깨칼국수", p: 7000 }, { ko: "시래기국밥", p: 5000 }, { ko: "잔치국수", p: 5000 },
+        { ko: "비빔국수", p: 6000 },
+      ]},
+      { t: "주류", items: [
+        { ko: "맥주", p: 4000 }, { ko: "소주", p: 4000 }, { ko: "막걸리", p: 3000 }, { ko: "음료수", p: 2000 },
+      ]},
+    ],
+    notes: { ko: [], en: [], vi: [], th: [], km: [] },
+  },
+];
+
+/* QR data URIs injected at build time */
+const QR = {};
+
+const ONLY = "06";
+const INDEX_URL = "./";
+
+/* ================= STATE ================= */
+let lang = "ko";
+try {
+  const saved = localStorage.getItem("gc-lang");
+  if (saved && UI[saved]) lang = saved;
+  else {
+    const nav = (navigator.language || "").toLowerCase();
+    if (nav.startsWith("en")) lang = "en";
+    else if (nav.startsWith("vi")) lang = "vi";
+    else if (nav.startsWith("th")) lang = "th";
+    else if (nav.startsWith("km")) lang = "km";
+  }
+} catch (e) {}
+
+const t = () => UI[lang];
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const won = (n) => (lang === "ko" ? n.toLocaleString("ko-KR") + "원" : "₩" + n.toLocaleString("en-US"));
+const trName = (ko) => (lang === "ko" ? ko : (TR[ko] ? TR[ko][IDX[lang]] : ko));
+const trSec = (ko) => (lang === "ko" ? ko : (SEC[ko] ? SEC[ko][IDX[lang]] : ko));
+const trSz = (ko) => (lang === "ko" ? ko : (SZ[ko] ? SZ[ko][IDX[lang]] : ko));
+
+/* ================= RENDER ================= */
+function renderLangbar() {
+  document.getElementById("langbar").innerHTML = LANGS.map(
+    (l) => `<button class="langbtn" aria-pressed="${l.code === lang}" onclick="setLang('${l.code}')">${l.label}</button>`
+  ).join("");
+}
+
+function setLang(code) {
+  lang = code;
+  try { localStorage.setItem("gc-lang", code); } catch (e) {}
+  document.documentElement.setAttribute("lang", code);
+  render();
+}
+
+function itemHtml(m) {
+  const name = trName(m.ko);
+  let rows = "";
+  if (m.sizes) {
+    rows = `<div class="mi-row"><span class="mi-name">${esc(name)}</span><span class="mi-dots" style="border:0"></span></div>`;
+    rows += m.sizes.map(([sz, p]) => `
+      <div class="mi-size"><span class="sz">· ${esc(trSz(sz))}</span><span class="mi-dots"></span><span class="mi-price">${won(p)}</span></div>`).join("");
+  } else {
+    const priceHtml = m.p == null ? `<span class="mi-price" style="color:var(--ink-faint)">—</span>` : `<span class="mi-price">${won(m.p)}</span>`;
+    rows = `<div class="mi-row"><span class="mi-name">${esc(name)}</span><span class="mi-dots"></span>${priceHtml}</div>`;
+  }
+  const koLine = lang !== "ko" ? `<div class="mi-ko">${esc(m.ko)}</div>` : "";
+  const tagLine = m.tag ? `<div class="mi-tag">${esc(m.tag[lang] || m.tag.ko)}</div>` : "";
+  return `<div class="mi">${rows}${koLine}${tagLine}</div>`;
+}
+
+function renderIndex() {
+  const u = t();
+  const shopCards = SHOPS.map((s) => `
+    <a class="shopcard" href="#/shop/${s.id}">
+      <span class="stamp serif">${s.id}</span>
+      <span class="sc-body">
+        <span class="sc-name">${esc(lang === "ko" ? s.name : s.name + " · " + s.rom)}</span>
+        <span class="sc-cat">${esc(s.cat[lang])}</span>
+      </span>
+      <span class="sc-arrow">›</span>
+    </a>`).join("");
+
+  const qrCards = SHOPS.map((s) => `
+    <div class="qr-sticker">
+      <div class="qr-top">NO.${s.id}</div>
+      ${QR[s.id] ? `<img src="${QR[s.id]}" alt="QR ${esc(s.name)}">` : `<div class="qr-ph">QR</div>`}
+      <div class="qr-name">${esc(s.name)}</div>
+      <div class="qr-hint">${esc(u.scan)}</div>
+    </div>`).join("");
+
+  const howSteps = u.how.map((h, i) => `
+    <div class="how-step">
+      <span class="hs-n">${i + 1}</span>
+      <span class="hs-t"><b>${esc(h[0])}</b><span>${esc(h[1])}</span></span>
+    </div>`).join("");
+
+  return `
+    <div class="masthead">
+      <div class="mk-sub">${esc(u.kicker)}</div>
+      <h1 class="serif">${esc(u.market)}</h1>
+      <div class="mk-en">${esc(u.marketSub)}</div>
+    </div>
+    <div class="mast-rule">13</div>
+    <p class="lead">${esc(u.lead)}</p>
+
+    <div class="sechead"><span class="no">壹</span>${esc(u.shops)}</div>
+    ${shopCards}
+
+    <div class="sechead"><span class="no">貳</span>${esc(u.qrSec)}</div>
+    <div class="qr-grid">${qrCards}</div>
+    <p class="qr-note">${esc(u.qrNote)}</p>
+
+    <div class="sechead"><span class="no">參</span>${esc(u.howSec)}</div>
+    <div class="how">${howSteps}</div>
+
+    ${footerHtml()}
+  `;
+}
+
+function renderShop(shop) {
+  const u = t();
+  const sectionsHtml = shop.sections.map((sec) => `
+    <div class="menu-title">${esc(trSec(sec.t))}</div>
+    ${sec.items.map(itemHtml).join("")}
+  `).join("");
+
+  const notes = (shop.notes[lang] || []).map((n) => `<li>${esc(n)}</li>`).join("");
+
+  return `
+    <a class="backlink" href="${INDEX_URL}">‹ ${esc(u.back)}</a>
+    <div class="shop-head">
+      <div class="stamp serif">${shop.id}</div>
+      <h1 class="serif">${esc(shop.name)}</h1>
+      <div class="sh-alt">${esc(shop.rom)}</div>
+      <span class="sh-cat">${esc(shop.cat[lang])}</span>
+    </div>
+
+    <div class="menu-paper">
+      ${sectionsHtml}
+      ${notes ? `<ul class="paper-notes">${notes}</ul>` : ""}
+      ${lang !== "ko" && u.orderHint ? `<div class="order-hint">👉 ${esc(u.orderHint)}</div>` : ""}
+    </div>
+
+    ${footerHtml(true)}
+  `;
+}
+
+function footerHtml(withPrice) {
+  const u = t();
+  return `<footer>
+    ${withPrice ? esc(u.priceNote) + "<br>" : ""}
+    ${esc(u.updated)}<br>
+    <span class="f-market">${esc(u.market)}</span>
+  </footer>`;
+}
+
+function render() {
+  const u = t();
+  document.getElementById("demoRibbon").textContent = "⚠ " + u.demo;
+  renderLangbar();
+  const app = document.getElementById("app");
+  app.innerHTML = renderShop(SHOPS.find((s) => s.id === ONLY));
+  window.scrollTo(0, 0);
+}
+
+window.addEventListener("hashchange", render);
+document.documentElement.setAttribute("lang", lang);
+render();
+</script>
