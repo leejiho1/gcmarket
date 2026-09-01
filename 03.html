@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>단골식당 가격표</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans+Thai:wght@400;500;700&family=Noto+Sans+Khmer:wght@400;500;700&display=swap" rel="stylesheet">
@@ -39,7 +44,7 @@
   }
 
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
+  html { font-size: 17px; } html, body { margin: 0; padding: 0; }
   body {
     background: var(--bg);
     color: var(--ink);
@@ -49,7 +54,7 @@
   }
   .serif { font-family: "Noto Serif KR", "Apple SD Gothic Neo", serif; }
 
-  .wrap { max-width: 480px; margin: 0 auto; padding: 0 16px 56px; }
+  .wrap { max-width: 520px; margin: 0 auto; padding: 0 14px 56px; }
 
   .demo-ribbon {
     background: var(--ink); color: var(--bg); text-align: center;
@@ -175,7 +180,8 @@
   footer { text-align: center; margin-top: 30px; color: var(--ink-faint); font-size: .72rem; line-height: 1.7; }
   footer .f-market { font-family: "Noto Serif KR", serif; font-weight: 700; color: var(--ink-soft); }
 </style>
-
+</head>
+<body>
 <div class="demo-ribbon" id="demoRibbon"></div>
 <div class="langbar"><div class="langbar-in" id="langbar" role="group" aria-label="language"></div></div>
 <div class="wrap" id="app"></div>
@@ -722,7 +728,6 @@ function renderIndex() {
   const u = t();
   const shopCards = SHOPS.map((s) => `
     <a class="shopcard" href="#/shop/${s.id}">
-      <span class="stamp serif">${s.id}</span>
       <span class="sc-body">
         <span class="sc-name">${esc(lang === "ko" ? s.name : s.name + " · " + s.rom)}</span>
         <span class="sc-cat">${esc(s.cat[lang])}</span>
@@ -732,7 +737,6 @@ function renderIndex() {
 
   const qrCards = SHOPS.map((s) => `
     <div class="qr-sticker">
-      <div class="qr-top">NO.${s.id}</div>
       ${QR[s.id] ? `<img src="${QR[s.id]}" alt="QR ${esc(s.name)}">` : `<div class="qr-ph">QR</div>`}
       <div class="qr-name">${esc(s.name)}</div>
       <div class="qr-hint">${esc(u.scan)}</div>
@@ -750,7 +754,7 @@ function renderIndex() {
       <h1 class="serif">${esc(u.market)}</h1>
       <div class="mk-en">${esc(u.marketSub)}</div>
     </div>
-    <div class="mast-rule">13</div>
+    <div class="mast-rule">✦</div>
     <p class="lead">${esc(u.lead)}</p>
 
     <div class="sechead"><span class="no">壹</span>${esc(u.shops)}</div>
@@ -779,7 +783,6 @@ function renderShop(shop) {
   return `
     <a class="backlink" href="${INDEX_URL}">‹ ${esc(u.back)}</a>
     <div class="shop-head">
-      <div class="stamp serif">${shop.id}</div>
       <h1 class="serif">${esc(shop.name)}</h1>
       <div class="sh-alt">${esc(shop.rom)}</div>
       <span class="sh-cat">${esc(shop.cat[lang])}</span>
@@ -817,3 +820,5 @@ window.addEventListener("hashchange", render);
 document.documentElement.setAttribute("lang", lang);
 render();
 </script>
+</body>
+</html>
