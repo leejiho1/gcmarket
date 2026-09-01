@@ -73,6 +73,9 @@
   }
   .langbtn[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); font-weight: 700; }
 
+  .brandbar { max-width: 520px; margin: 0 auto; padding: 14px 14px 0; text-align: center; }
+  .brandbar img { max-width: 230px; width: 62%; height: auto; background: #fff; border-radius: 12px; padding: 9px 16px; box-shadow: var(--shadow); }
+
   .masthead { text-align: center; padding: 26px 0 6px; }
   .masthead .mk-sub {
     font-size: .72rem; letter-spacing: .28em; color: var(--accent);
@@ -184,6 +187,7 @@
 <body>
 <div class="demo-ribbon" id="demoRibbon"></div>
 <div class="langbar"><div class="langbar-in" id="langbar" role="group" aria-label="language"></div></div>
+<div class="brandbar"><img src="logo.png" alt="거창전통시장"></div>
 <div class="wrap" id="app"></div>
 
 <script>
